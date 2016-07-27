@@ -1,0 +1,16 @@
+<h1>Showing all products:</h1>
+
+<div class="row products-index">
+  <% @products.each do |product| %>
+    <a href="/products/<%= product.id %>" >
+      <div class="col-md-4 thumbnail">
+        <h4>Name:<a href="/products/<%= product.id %>" ><%= product.name %></a></h4>
+        <h4>Price: <%= product.price %></h4>
+        <img src="<%= product.image %>" alt="">
+        <h3>Description: <%= product.description %></h3>
+        <h3>Product tax: $<%= product.tax %></h3>
+        <h3 id="red_price">Product total: $<%= product.total %></h3>
+      </div>
+    </a>
+  <% end %>
+</div>

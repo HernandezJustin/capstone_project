@@ -1,0 +1,22 @@
+<%= form_tag("/products/#{@product.id}", method: "patch") do %>
+  <div>
+  <%= label_tag(:name, "Type in the name of the product:") %>
+  <%= text_field_tag(:name, @product.name) %>
+  </div>
+
+  <div>
+  <%= label_tag(:price, "Type in the price of the product:") %>
+  <%= text_field_tag(:price, @product.price) %>
+  </div>
+
+  <div>
+  <%= label_tag(:description, "Type in the description of the product:") %>
+  <%= text_field_tag(:description, @product.description) %>
+  </div>
+
+  <div>
+  <%= label_tag(:image, "Type in the image URL of the product:") %>
+  <%= text_field_tag(:image, @product.image) %>
+  </div>
+  <%= submit_tag("Edit") %>
+<% end %>

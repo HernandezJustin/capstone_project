@@ -1,9 +1,11 @@
-<%= form_tag("/products", method: "post") do %>
-  <%= label_tag(:name, "Type in the name of the product:") %>
-  <%= text_field_tag(:name) %>
-  <%= label_tag(:price, "Type in the price of the product:") %>
-  <%= text_field_tag(:price) %>
-  <%= label_tag(:description, "Type in the description of the product:") %>
-  <%= text_field_tag(:description) %>
-  <%= submit_tag("Create") %>
-<% end %>
+<h1>Showing recipe by id#</h1>
+
+<h3>Name: <%= @product.name %></h3>
+<h3>Price: <%= @product.price %></h3>
+<h3><img src="<%= @product.image %>" alt=""></h3>
+<h3>Description: <%= @product.description %></h3>
+<h3><%= @product.sale_message %></h3>
+
+<h3><%= link_to "Edit your product", "/products/#{@product.id}/edit" %></h3>
+<h3><a href="/products"</a>Back to all products</h3>
+<h3><%= link_to "Delete", "/products/#{@product.id}", method: :delete %></h3>
