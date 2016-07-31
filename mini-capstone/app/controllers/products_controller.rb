@@ -1,11 +1,22 @@
 class ProductsController < ApplicationController
   def index
     @products = Product.all
+    if params[:sort_low_to_high]
+      @products = Product.order(:price)
+    elsif params[:sort_high_to_low]
+      @products = Product.order(price: :desc)
+    elsif params[:under_two_dollars]
+      @products = Product.where("price < 2")
+    end
     render 'index.html.erb'
   end
 
   def show
-    @product = Product.find_by(id: params[:id])
+    if params[:id] == 'Random'
+      @product = Product.all.sample
+    else
+      @product = Product.find_by(id: params[:id])
+    end
     render 'show.html.erb'
   end
 
@@ -16,7 +27,6 @@ class ProductsController < ApplicationController
     @product = Product.new(
       name: params[:name],
       price: params[:price],
-      image: params[:image],
       description: params[:description])
     @product.save
     flash[:success] = "#{@product.name} has been created successfully"
@@ -32,7 +42,6 @@ class ProductsController < ApplicationController
     @product.update(
       name: params[:name],
       price: params[:price],
-      image: params[:image],
       description: params[:description]
     )
     flash[:success] = "#{@product.name} has been updated successfully"

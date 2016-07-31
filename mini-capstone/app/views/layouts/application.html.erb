@@ -29,13 +29,13 @@
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
+            <li><a href="/products?sort_low_to_high=price">Sort by price(Lowest to Highest)</a></li>
+            <li><a href="/products?sort_high_to_low=price">Sort by price(Highest to Lowest)</a></li>
             <li><a href="#">Something else here</a></li>
             <li role="separator" class="divider"></li>
-            <li><a href="#">Separated link</a></li>
+            <li><a href="/products?under_two_dollars=price">Discount Items</a></li>
             <li role="separator" class="divider"></li>
-            <li><a href="#">One more separated link</a></li>
+            <li><a href="/products/Random">Find a random product</a></li>
           </ul>
         </li>
       </ul>
@@ -50,9 +50,13 @@
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
+            <% unless current_user %>
+            <li><%= link_to 'signup', '/signup'  %></li>
+            <li><%= link_to 'signin', '/login'  %></li>
+            <% end %>
+            <% if current_user %>
+            <li><%= link_to 'signout', '/logout'  %></li>
+            <% end %>
             <li role="separator" class="divider"></li>
             <li><a href="#">Separated link</a></li>
           </ul>
