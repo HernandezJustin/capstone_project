@@ -1,0 +1,30 @@
+<% @carted_products.each do |carted_product| %>
+
+<ol>
+  <li>Product name:<%= carted_product.product.name %></li>
+  <li>Product price:<%= carted_product.product.price %></li>
+  <li>Product quantity:<%= carted_product.quantity %></li>
+  <div><%= link_to "Delete", "/checkout/#{carted_product.id}", method: "delete" %></div>
+</ol>
+  <% end %>
+
+
+  <%= form_tag("/orders", method: "post") do %>
+  <% @carted_products.each do |carted_product| %>
+    <div>
+    <%label_tag :quantity %>
+    <%= hidden_field_tag :quantity, carted_product.quantity  %>
+    </div>
+
+    <div>
+    <% label_tag :product_id %>
+    <%= hidden_field_tag :product_id, carted_product.id %>
+    </div>
+
+    <div>
+    <% label_tag :user_id%>
+    <%= hidden_field_tag :user_id, current_user.id %>
+    </div>
+    <% end %>
+    <%= submit_tag("Buy now") %>
+  <% end %>

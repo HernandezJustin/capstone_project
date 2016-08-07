@@ -1,9 +1,16 @@
 class Order < ActiveRecord::Base
+  has_many :carted_products
   belongs_to :product
   belongs_to :user
 
-  def order_subtotal
-    product.price * quantity
+
+  def order_subtotal()
+    carted_products = CartedProduct.where(user_id: self.user_id, status: "carted")
+    subTotal = 0
+    carted_products.each do |cartedProduct|
+      subTotal += cartedProduct.product.price * cartedProduct.quantity
+    end
+    subTotal
   end
 
   def order_tax

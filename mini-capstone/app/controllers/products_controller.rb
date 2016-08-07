@@ -8,6 +8,11 @@ class ProductsController < ApplicationController
     elsif params[:under_two_dollars]
       @products = Product.where("price < 2")
     end
+
+    if params[:category]
+      category = Category.find_by(name: params[:category])
+      @products = category.products
+    end
     render 'index.html.erb'
   end
 

@@ -3,6 +3,9 @@ class Product < ActiveRecord::Base
   has_many :images
   has_many :orders
   has_many :category_products
+  has_many :categories, through: :category_products
+  has_many :carted_products
+  has_many :users, through: :carted_products
   def sale_message
     if price.to_f < 2
       'This item is discounted!'
@@ -10,7 +13,6 @@ class Product < ActiveRecord::Base
       'This item is not on sale!'
     end
   end
-
 
   def tax
     (price.to_f * 0.09).round(2)

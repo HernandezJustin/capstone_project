@@ -1,0 +1,10 @@
+<% if current_user %>
+<% @carted_products.each do |carted_product| %>
+<h1>The current user whose id is: <%= current_user.id %> has purchased <%= carted_product.quantity %> items of <%= carted_product.product.name %><h1>
+<% end %>
+<h1>The order id is: <%= @order.id %></h1>
+<h1>The subtoal is: <%= @order.subtotal %> The tax is: <%= @order.tax %>
+  The total is: <%= @order.total %></h1>
+<% else %>
+<%= redirect_to '/login' %>
+<% end %>

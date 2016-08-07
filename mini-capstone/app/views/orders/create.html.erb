@@ -1,8 +1,0 @@
-<% if current_user %>
-<h1>The current user whose id is: <%= current_user.id %> has purchased <%= @order.quantity %> items<h1>
-<h1>The order id is: <%= @order.id %></h1>
-<h1>The subtoal is: <%= @order.subtotal %> The tax is: <%= @order.tax %>
-  The total is: <%= @order.total %></h1>
-<% else %>
-<%= redirect_to '/login' %>
-<% end %>

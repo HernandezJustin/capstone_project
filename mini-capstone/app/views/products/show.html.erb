@@ -1,24 +1,29 @@
 <h1>Showing recipe by id#</h1>
 
 <h3>Name: <%= @product.name %></h3>
-<h3>Supplier Name(Brand): <%= @product.supplier.name %></h3>
+
 <h3>Price: <%= @product.price %></h3>
 
 <h3>Description: <%= @product.description %></h3>
 <h3><%= @product.sale_message %></h3>
 
-<%= form_tag("/orders", method: "post") do %>
+<h3>Categories:</h3>
+<% @product.categories.each do |category| %>
+<li><%= category.name %></li>
+<% end %>
+
+<%= form_tag("/checkout", method: "post") do %>
   <div>
   <%= label_tag(:quantity, "Quantity:") %>
   <%= text_field_tag(:quantity) %>
   </div>
 
   <div>
-  <%= label_tag(:product_id, "Enter the product id:") %>
-  <%= text_field_tag(:product_id) %>
+  <%= label_tag :product_id %>
+  <%= hidden_field_tag :product_id, @product.id %>
   </div>
 
-  <%= submit_tag("Buy Now!") %>
+  <%= submit_tag("Add to cart") %>
 <% end %>
 
 <h3><%= link_to "Edit your product", "/products/#{@product.id}/edit" %></h3>
